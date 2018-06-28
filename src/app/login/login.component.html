@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row justify-content-md-center">
+        <div class="col-md-7">
+            <form class="form-horizontal" role="form" name="loginform" novalidate>
+             <fieldset>
+                 <div class="login  form-content">
+                    <div class="panel white-alpha-90">
+                      <div class="panel-heading">
+                         <div class="panel-title">
+                            <h3>&nbsp;&nbsp;&nbsp;<span class="text-primary" style="font-size: 25px;font-weight:bold;" >Enterprise Tool</span> <b style="color:#ff6600;" >&nbsp;&nbsp;V3</b>  </h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group" *ngIf="!authendicate">
+                        <input type="text"  class="form-control" id="" placeholder="UserId" required [(ngModel)]="userinfo.userId" name="userid">
+                    </div>
+                    <div class="form-group" *ngIf="!authendicate">
+                        <input type="password" class="form-control" id="" [(ngModel)]="userinfo.credential" name="credential"  placeholder="Password">
+                    </div>
+
+                    <div *ngIf="authendicate" class="dropdown">
+                                <label for="password"><b> Connect To : </b></label>
+                                 <div *ngIf="userinfo != null">
+                                     <select [(ngModel)]="selectedenv" name="connectenv"  class="form-control">
+                                             <option *ngFor="let userinf of userinfo.environmentLists" [ngValue]="userinf" >{{userinf.envname}}</option>
+                                     </select>
+                                </div>
+                    </div>
+
+                    <div class="form-group">
+                          <button *ngIf="!authendicate" type="button" style="width:100%;border-radius: 8px;"  class="btn rounded-btn btn-primary btn-sm message form-control"  (click)="onLoggedin()" >Sign In</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <button type="button" (click)="connect(userInfo)" *ngIf="authendicate" style="border-radius: 8px;" class="btn rounded-btn btn-primary btn-sm message form-control">Connect</button>
+                          <span *ngIf="loginError" class="label label-danger"><b>Error With Login</b> Please try again. </span>
+                    </div>
+                    <div *ngIf="!authendicate" class="form-group">
+                            <p class="message">Not registered? <a name="createUser" (click)="onLoggedin()" ><u>Create an account</u></a></p>
+                    </div>
+                    <div *ngIf="!authendicate" class="form-group">
+                         <p class="message" ng-show="!authendicate">Already registered? <a style="height:15%;width:45%; border-radius: 8px;" class="btn btn-primary btn-sm message" [routerLink]="['/signup']">Update User Details</a>         </p>
+                    </div>
+                </div>
+              </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

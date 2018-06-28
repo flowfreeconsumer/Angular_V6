@@ -1,0 +1,250 @@
+<p-dialog *ngIf="selinfo"  header="Assign Environment" [(visible)]="displayenv" [width]="850" [minWidth]="200" [minY]="70" [style]="{'border-color':'black'}" [modal]="true" [closeOnEscape]="false">
+   
+ <form class="form-horizontal" role="form" name="envform" novalidate>     
+             <fieldset>     
+             	 <div class="form-group">	
+									<label class="control-label col-sm-3" for="userId">User Id</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="User Id" required [(ngModel)]="selinfo.userId" name="userId">								
+								    </div>
+				  </div>  
+	             <div class="form-group">
+	                            <div>	
+									<label class="control-label col-sm-3" for="firstName">First Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="FirstName" required [(ngModel)]="selinfo.firstName" name="firstName">								
+								    </div>
+								 </div>
+								 <div>
+								 	<label class="control-label col-sm-3" for="lastName">Last Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Last Name" required [(ngModel)]="selinfo.lastName" name="firstName">								
+								    </div>
+								 </div>
+				  </div>  
+				  
+				                          
+             </fieldset>    
+
+ </form>
+				<table class="table">
+											   <thead>
+													<tr>
+														<th>User Environments</th>
+														<th></th>
+														<th>Environments</th>
+													</tr>
+												</thead>
+												<tbody>
+														<tr>
+															 <td width="45%;" >
+																 <select class="form-control" name="userEnvs" id="userEnvs" [(ngModel)]="selectedTRGEnv" multiple style="height:102%;">
+																	 <option *ngFor="let trgOption of UserEnvInfo" [ngValue]="trgOption" >{{trgOption}}</option>
+																 </select>
+															 </td>
+															 <td width="10%;" >
+																<div class="btn-group-vertical">													
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="addEnvItemButton(UserEnvInfo,selectedSRCEnvs,TEMPEnvInfoData)">&lt;</button>
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="addAllEnvItemButton(UserEnvInfo,TEMPEnvInfoData)">&lt;&lt;</button>
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="removeAllEnvItemButton(UserEnvInfo,TEMPEnvInfoData)">&gt;&gt;</button>
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="removeEnvItemButton(UserEnvInfo,selectedTRGEnv,TEMPEnvInfoData)">&gt;</button>
+																	
+																</div>
+															</td>
+															<td width="45%;" >
+																<select class="form-control" name="envs" id="envs" [(ngModel)]="selectedSRCEnvs" multiple style="height:102%;">
+																	<option *ngFor="let srcOption of TEMPEnvInfoData" [ngValue]="srcOption" >{{srcOption}}</option>
+																</select>
+															</td>
+														</tr>
+												</tbody>
+									</table>				
+
+     <p-footer>                	
+     	    <button type="button" pButton (click)="assignUserEnvs(selinfo,UserEnvInfo)" label="Update"></button>
+            <button type="button" pButton (click)="displayenv=false" label="Close"></button>
+        </p-footer>
+</p-dialog>
+
+
+<p-dialog *ngIf="selinfo"  header="Assign Role" [(visible)]="displayrole" [width]="850" [minWidth]="200" [minY]="70" [style]="{'border-color':'black'}" [modal]="true" [closeOnEscape]="false">
+   
+ <form class="form-horizontal" role="form" name="roleform" novalidate>     
+             <fieldset>     
+             	 <div class="form-group">	
+									<label class="control-label col-sm-3" for="userId">User Id</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="User Id" required [(ngModel)]="selinfo.userId" name="userId">								
+								    </div>
+				  </div>  
+	             <div class="form-group">
+	                            <div>	
+									<label class="control-label col-sm-3" for="firstName">First Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="FirstName" required [(ngModel)]="selinfo.firstName" name="firstName">								
+								    </div>
+								 </div>
+								 <div>
+								 	<label class="control-label col-sm-3" for="lastName">Last Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Last Name" required [(ngModel)]="selinfo.lastName" name="firstName">								
+								    </div>
+								 </div>
+				  </div>  
+				  
+				                          
+             </fieldset>    
+
+ </form>
+								
+								<table class="table">
+											   <thead>
+													<tr>
+														<th>User Roles</th>
+														<th></th>
+														<th>Roles</th>
+													</tr>
+												</thead>
+												<tbody>
+														<tr>
+															<td width="45%;" >
+																 <select class="form-control" name="userRoles" id="userRoles" [(ngModel)]="selectedTRGRoles" multiple style="height:102%;" >
+																	 <option *ngFor="let trgOption of UserRoleInfo" [ngValue]="trgOption.roleId" >{{trgOption.roleId}}</option>
+																 </select>
+															 </td>
+															 <td width="10%;" >
+																<div class="btn-group-vertical">													
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="addItemButton(UserRoleInfo,selectedSRCRoles,TEMPRoleInfoData)">&lt;</button>
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="addAllItemButton(UserRoleInfo,TEMPRoleInfoData)">&lt;&lt;</button>
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="removeAllItemButton(UserRoleInfo,TEMPRoleInfoData)">&gt;&gt;</button>
+																	<button id="update" type="submit" class="btn btn-primary btn-sm" (click)="removeItemButton(UserRoleInfo,selectedTRGRoles,TEMPRoleInfoData)">&gt;</button>																	
+																</div>
+															</td>
+															<td width="45%;" >
+																<select class="form-control" name="roles" id="roles" [(ngModel)]="selectedSRCRoles" multiple style="height:102%;" >
+																	<option *ngFor="let srcOption of TEMPRoleInfoData" [ngValue]="srcOption.roleId" >{{srcOption.roleId}}</option>
+																</select>
+															</td>																													
+														</tr>
+												</tbody>
+									</table>
+     <p-footer>                        
+            <button type="button" pButton (click)="assignUserRoles(selinfo,UserRoleInfo)" label="Update"></button>
+            <button type="button" pButton (click)="displayrole=false" label="Close"></button>
+        </p-footer>
+</p-dialog>
+
+<p-dialog *ngIf="selinfo"  header="UpdateUser" [(visible)]="display" [width]="850" [minWidth]="200" [minY]="70" [style]="{'border-color':'black'}" [modal]="true" [closeOnEscape]="false">
+   
+ <form class="form-horizontal" role="form" name="updateform" novalidate>     
+             <fieldset>     
+	             <div class="form-group">	
+									<label class="control-label col-sm-3" for="firstName">First Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="FirstName" required [(ngModel)]="selinfo.firstName" name="firstName">								
+								    </div>
+				  </div>  
+				  <div class="form-group">	
+									<label class="control-label col-sm-3" for="lastName">Last Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Last Name" required [(ngModel)]="selinfo.lastName" name="firstName">								
+								    </div>
+				  </div>  
+				  <div class="form-group">	
+									<label class="control-label col-sm-3" for="emailId">Email Id</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Email Id" required [(ngModel)]="selinfo.emailId" name="emailId">								
+								    </div>
+				  </div>  
+				  <div class="form-group">	
+									<label class="control-label col-sm-3" for="employerName">Employer Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Employer Name" required [(ngModel)]="selinfo.employerName" name="employerName">								
+								    </div>
+				  </div>  
+				  <div class="form-group">	
+									<label class="control-label col-sm-3" for="credential">Password</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Password" required [(ngModel)]="selinfo.credential" name="credential">								
+								    </div>
+				  </div>  
+				  <div class="form-group">	
+									<label class="control-label col-sm-3" for="teamname">Team Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Team Name" required [(ngModel)]="selinfo.teamname" name="teamname">								
+								    </div>
+				  </div>    
+				   <div class="form-group">	
+									<label class="control-label col-sm-3" for="managername">Manager Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Manager Name" required [(ngModel)]="selinfo.managername" name="managername">								
+								    </div>
+				  </div>  
+				    <div class="form-group">	
+									<label class="control-label col-sm-3" for="ProjectName">Project Name</label>
+									<div class="col-sm-8">					
+										<input type="text"  class="form-control" id="" placeholder="Project Name" required [(ngModel)]="selinfo.projectname" name="ProjectName">								
+								    </div>
+				  </div>  
+				                          
+             </fieldset>    
+
+ </form>
+
+
+     <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="updateuser(selinfo)" label="Update"></button>            
+            <button type="button" pButton (click)="display=false" label="Close"></button>
+        </p-footer>
+</p-dialog>
+
+<div>&nbsp;
+	<!-- <button type="button" (click)="createuser()"  style="border-radius: 6px;" class="btn rounded-btn btn-primary btn-sm">Create User</button> &nbsp; -->
+	<button type="button" *ngIf="seluser" (click)="updateinfo()"  style="border-radius: 6px;" class="btn rounded-btn btn-primary btn-sm">Update User</button> &nbsp;
+	<button type="button" *ngIf="seluser" (click)="assignrole()"  style="border-radius: 6px;" class="btn rounded-btn btn-primary btn-sm">Assign Role</button> &nbsp;
+	<button type="button" *ngIf="seluser" (click)="assignenv()"  style="border-radius: 6px;" class="btn rounded-btn btn-primary btn-sm">Assign Environment</button> 
+</div> <br />
+
+
+<div *ngIf="userinfo" class="row top-buffer">	
+
+	<div *ngIf="userinfo" class="col content-section implementation">
+		<p-table #dt [columns]="cols" [value]="userinfo" [(selection)]="selectedinfo" dataKey="userId" [paginator]="true" [rows]="15" [resizableColumns]="true">
+		    
+		    <ng-template pTemplate="header"  let-columns>
+		        <tr>
+		        	<th style="width: 2.25em"></th>
+		        	 <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+		                {{col.header}}
+		                <p-sortIcon [field]="col.field"></p-sortIcon>
+		            </th>            
+		        </tr>
+
+		        <tr>
+		        	<th style="width: 2.25em"></th>
+		            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+		                <input *ngSwitchCase="'userId'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+		            </th>
+        		</tr>
+		    </ng-template>
+
+		    <ng-template pTemplate="body" let-rowData let-columns="columns">
+		        <tr [pSelectableRow]="rowData">
+		        	<td>
+		                <p-tableRadioButton [value]="rowData" (click)="selectionInfo(rowData)" ></p-tableRadioButton>
+		            </td>
+		            <td *ngFor="let col of columns" class="ui-resizable-column">
+		                    {{rowData[col.field]}}
+		            </td>
+		        </tr>
+		    </ng-template>
+
+			<!-- <ng-template pTemplate="summary">
+		                 <div style="text-align: left">   
+		                	{{selectedinfo.firstName}}
+		        		</div>
+		    </ng-template> -->
+
+		</p-table>
+	</div>
+</div>

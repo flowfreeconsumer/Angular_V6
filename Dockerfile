@@ -1,11 +1,11 @@
 
 # Create app directory
-WORKDIR D:\Dox\illin1697\Docker\Images
+WORKDIR /usr/src/app 
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY package*.json D:\Dox\illin1697\Docker\Images
+COPY package*.json ./ 
 
 RUN npm install
 # If you are building your code for production
